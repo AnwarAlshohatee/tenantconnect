@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Meeting | TenantConnect</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <main class="container py-5">
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-7">
+
+        <!-- Back to dashboard -->
+        <a href="/dashboard" class="text-decoration-none">
+          &larr; Back to Dashboard
+        </a>
+
+        <!-- Edit meeting card -->
+        <div class="card border-0 shadow-sm mt-3">
+          <div class="card-body p-4 p-md-5">
+
+            <h1 class="h3 fw-bold mb-2">Edit Meeting</h1>
+
+            <p class="text-muted mb-4">
+              Update your meeting details below.
+            </p>
+
+            <!-- Display validation errors -->
+            <% if (error) { %>
+              <div class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+            <% } %>
+
+            <!-- Edit meeting form -->
+            <form
+              action="/meetings/<%= meeting._id %>/edit"
+              method="POST"
+            >
+
+              <!-- Meeting title -->
+              <div class="mb-3">
+                <label for="title" class="form-label">
+                  Meeting Title
+                </label>
+
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  class="form-control"
+                  value="<%= meeting.title %>"
+                  required
+                >
+              </div>
+
+              <!-- Meeting description -->
+              <div class="mb-3">
+                <label for="description" class="form-label">
+                  Description
+                </label>
+
+                <textarea
+                  id="description"
+                  name="description"
+                  class="form-control"
+                  rows="4"
+                  required
+                ><%= meeting.description %></textarea>
+              </div>
+
+              <!-- Meeting date and time -->
+              <div class="mb-3">
+                <label for="date" class="form-label">
+                  Date and Time
+                </label>
+
+                <input
+                  type="datetime-local"
+                  id="date"
+                  name="date"
+                  class="form-control"
+                  value="<%= new Date(meeting.date).toISOString().slice(0, 16) %>"
+                  required
+                >
+              </div>
+
+              <!-- Meeting location -->
+              <div class="mb-4">
+                <label for="location" class="form-label">
+                  Location
+                </label>
+
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  class="form-control"
+                  value="<%= meeting.location %>"
+                  required
+                >
+              </div>
+
+              <!-- Action buttons -->
+              <div class="d-flex flex-wrap gap-2">
+
+                <button type="submit" class="btn btn-primary">
+                  Save Changes
+                </button>
+
+                <a
+                  href="/dashboard"
+                  class="btn btn-outline-secondary"
+                >
+                  Cancel
+                </a>
+
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
