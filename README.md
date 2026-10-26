@@ -10,6 +10,10 @@ Built with the **MVC architecture**, the application demonstrates user authentic
 
 *TenantConnect application preview.*
 
+## Live Demo
+
+**Try the application:** [Tenantconnect LIVE DEMO ](https://tenantconnect-3g49.onrender.com)
+
 ## Features
 
 - **User Authentication:** Secure registration, login, and logout.
